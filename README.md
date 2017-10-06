@@ -84,6 +84,6 @@ __test.py__ <br>
 	    print(schema.Error())
 	    
 ## Note ##
-__Use Python 3 on Windows__
+__I use Python 3 on Windows__
 
 	
