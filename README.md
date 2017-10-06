@@ -2,11 +2,12 @@
 
 
 __test.py__ <br>
-	``` 
+	```sh
 	from schema import * 
 	```
 __Call the schema-sq__<br>
-	```
+
+	```sh
 	schema.configer["database"] = "boy"
 	if schema.isConnect():
 
