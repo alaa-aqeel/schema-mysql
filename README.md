@@ -4,7 +4,7 @@ __You need to install mysql-connector__<br>
 __Window__<br>
 	
 		download from :
-			https://dev.mysql.com/downloads/connector/python/2.1.html 
+			<a herf='https://dev.mysql.com/downloads/connector/python/2.1.html'>mysql</a>
 		
 __linux__<br>
 	
