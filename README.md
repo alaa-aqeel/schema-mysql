@@ -1,9 +1,11 @@
 # schema-mysql
 
 
-__test.py__
-	``` from schema import * ```
-__Call the schema-sq__
+__test.py__ <br>
+	``` 
+	from schema import * 
+	```
+__Call the schema-sq__<br>
 	```
 	schema.configer["database"] = "boy"
 	if schema.isConnect():
