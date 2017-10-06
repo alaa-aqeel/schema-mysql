@@ -1,4 +1,5 @@
-# schema-mysql
+# schema-mysql 
+
 
 __You need to install mysql-connector__<br>
 __Window__<br>
@@ -81,4 +82,8 @@ __test.py__ <br>
 
 	else:
 	    print(schema.Error())
+	    
+## Note ##
+__Use Python 3 on Windows__
+
 	
