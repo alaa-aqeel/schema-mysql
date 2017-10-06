@@ -1,5 +1,14 @@
 # schema-mysql
 
+__You need to install mysql-connector__<br>
+	__Window__<br>
+	download from :
+		https://dev.mysql.com/downloads/connector/python/2.1.html
+	__linux__<br>
+	Installed by the use of pip  :
+	
+		sudo pip3 install --allow-external mysql-connector-python mysql-connector-python
+
 
 __test.py__ <br>
 
