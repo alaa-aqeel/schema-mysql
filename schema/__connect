@@ -1,0 +1,30 @@
+# python 3
+import mysql.connector as db
+
+
+__msg__ = [""]
+
+class Connect():
+	__sql = None
+	def __init__(self,configer):
+		try:
+			if configer["database"].strip() != "":
+				self.connect_ = db.connect(**configer)
+				self.cur = self.connect_.cursor(named_tuple=True)
+				
+				self.con = True
+			else:
+				print("database == empty --!! -_- !!--")
+		except db.Error as er:
+			self.con = False
+			__msg__[0] = str(er)
+
+
+	def __del__(self):
+		""" disConnect """
+		if self.con:
+			self.cur.close()
+			self.connect_.close()
+		
+
+
