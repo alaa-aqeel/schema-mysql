@@ -2,14 +2,12 @@
 
 __You need to install mysql-connector__<br>
 __Window__<br>
-	
-		download from :
-			<a herf='https://dev.mysql.com/downloads/connector/python/2.1.html'>mysql</a>
+https://dev.mysql.com/downloads/connector/python/2.1.html<br>
 		
 __linux__<br>
 	
-		Installed by the use of pip  :
-			sudo pip3 install --allow-external mysql-connector-python mysql-connector-python
+	Installed by the use of pip  :
+		sudo pip3 install --allow-external mysql-connector-python mysql-connector-python
 
 
 __test.py__ <br>
