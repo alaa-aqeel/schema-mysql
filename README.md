@@ -1,9 +1,10 @@
 # schema-mysql
 
 
-test.py
-	from schema import *
-Call the schema-sq
+__test.py__
+	''' from schema import * '''
+__Call the schema-sq__
+	'''
 	schema.configer["database"] = "boy"
 	if schema.isConnect():
 
@@ -32,3 +33,4 @@ Call the schema-sq
 
 	else:
 	    print(schema.Error())
+	'''
