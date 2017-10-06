@@ -2,9 +2,9 @@
 
 
 __test.py__
-	''' from schema import * '''
+	``` from schema import * ```
 __Call the schema-sq__
-	'''
+	```
 	schema.configer["database"] = "boy"
 	if schema.isConnect():
 
@@ -33,4 +33,4 @@ __Call the schema-sq__
 
 	else:
 	    print(schema.Error())
-	'''
+	```
