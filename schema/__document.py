@@ -60,45 +60,14 @@ update = """
 select = """
 # * Select  *
 ##
+#table = Select("alaa")
+#print(table.columns) #// return "columns name"
+#print(table.name)    #// return alaa itme in col name
+#tabl.all     #//  return dict(table::alaa)
 
-#{ Select col from table Where 1=1 }#
-
-*-schema.select("name table").col("name col","age","work",age=21)
-## OR #
-*- select = schema.select("name table")
-*- select.col("name col","age","work",age=21)
-
-#**--> get age,work  where age=21
-
-## OR #
-#{ Select col,col from table }#
-*- select = schema.select("name table")
-*- select.col("name col","age","work")
-
-**--> Not Where 
-##
-#{ Select * from table where 1=1 }#
-
-*-schema.select("name tables").all(age=21)
-
-## OR #
-*-select = schema.select("name tables")
-*-select.all(age=21) 
-
-#**--> all where age = 21 get 
-## OR #
-*-schema.select("name tables").all()
-
-##
-#{ Select table1.col,table1.col from table1,tabl2 where table1.col3 = table2.col3 }#
-          
-*-schema.select("tb1","tb2").joins("col  name from tb1","col name from tb1",join_col="name col") 
-
-## AND #
-
-#{ Select table2.col1,table2.col2 from tabl2,table1 where table2.col3 = table1.col3 }#
-
-*-schema.select("tb2","tb1").joins("col name from tb2","col name from tb2",join_col="name col") 
+#table = Select("alaa",index=-1) #// index=-1  "get last item in cols"
+#print(table.name)    #// return last item in name
+#tabl.all     #// return dict(table::alaa)
 
 """
 
