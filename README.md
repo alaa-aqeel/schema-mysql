@@ -54,12 +54,13 @@ __test.py__ <br>
 		pprint(schema.tables())
 		
 		# table::user  column::name
-		pprint((schema.select("user").col("name")))
-		# where 'password=12345' *select*
-		pprint(schema.select("user").col("name",password=12345))
+		pprint((schema.select("user").name))
+		#  'password' *select*
+		pprint(schema.select("user").password)
 		# all table 
-		pprint(schema.select("alaa").all())
-		pprint(schema.select("alaa").all(password=12345))
+		pprint(schema.select("alaa").all)
+		# select item last from column name
+		pprint(schema.select("alaa",index=-1).name)
 
 		# Show the names of the columns in the table
 		pprint(schema.Columns("user").names())
