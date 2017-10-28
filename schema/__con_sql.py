@@ -71,85 +71,45 @@ class Add(type_):
 
 
 
-class select(Connect):
-	def __init__(self,*name):
-		if str(name).strip() != "": 
+class Select(Connect):
+	_all  = {}
+	def __init__(self,*col,index=""):
+		if str(col).strip() != "": 
 			super().__init__(configer)
-			self.name = name
-		else:
-			exit()
-	
-	def all(self,**where):
-		where_s = ""
-		for k,v in where.items():
-			if type(v) in (int,float,bool):
-				where_s += str(k)+"="+str(v)
-			else:
-				where_s += str(k)+"='"+str(v)+"'"
-			where_s += ","
-
-		wheres = "1=1" if where_s == "" else where_s.strip(",")
-		sql = "SELECT * FROM %s where %s;"%(self.name[0],wheres)
-		try:
-			self.cur.execute(sql)
-			rows = {};count = 0 
-			for i in self.cur.fetchall():
-				rows.update({"row:%s"%count:dict(i._asdict())})
-				count +=1
-			return rows
-		except db.Error as er:
-			return str(er)
-		except:
-			return __msg__[0]
-
-	def col(self,*col,**where):
-		if col != (): 
-			where_s = ""
-			for k,v in where.items():
-				if type(v) in (int,float,bool):
-					where_s += str(k)+"="+str(v)
-				else:
-					where_s += str(k)+"='"+str(v)+"'"
-				where_s += ","
-
-			wheres = "1=1" if where_s == "" else where_s.strip(",")
-			sql = "SELECT %s FROM %s where %s;"%(str(",".join(col)),self.name[0],wheres)
+			self.index = index
+			sql = "SELECT * FROM %s;"%str(",".join(col))
 			try:
 				self.cur.execute(sql)
-				rows = {};count = 0 
-				for i in self.cur.fetchall():
-					rows.update({"row:%s"%count:dict(i._asdict())})
-					count +=1
-				return rows
+				Select.cols =self.cur.column_names
+				for i in self.cur.column_names:
+					self._all.update({i:[]})
+
+				for v in self.cur.fetchall():
+					for k in self.cols:
+						if self._all.get(k) != None:
+							self._all[k].append(v[self.cols.index(k)])
+
+				for k,v in self._all.items():
+					self._all[k] = tuple(self._all.get(k))
+
 			except db.Error as er:
-				return str(er)
-			except:
-				return __msg__[0]
-		else:
-			return " *col = 'forget' \n help: print(schema.docs.select)"
+				print(er)
+				self._all.update({"Error":str(er)})
+			except Exception as ers :
+				print(ers)
 
-	def joins(self,*col,join_col):
-		if col != () and join_col != "":
-			if len(self.name) != 1 : 
-				where = " %s.%s = %s.%s"%(self.name[0],join_col,self.name[1],join_col)
-				cols = self.name[0]+"."+str(str(",%s."%(self.name[0])).join(col))
-				sql = "SELECT %s FROM %s where %s ;"%(cols,str(",".join(self.name)),where)
-				try:
-					self.cur.execute(sql)
-					rows = {};count = 0 
-					for i in self.cur.fetchall():
-						rows.update({"row:%s"%count:dict(i._asdict())})
-						count +=1
-					return rows
-				except db.Error as er:
-					return str(er)
-				except:
-					return __msg__[0]
-			else:
-				exit()
 		else:
-			return " *col 'forget' or join_col \n help: print(schema.docs.select)"
+			self._all.update({"Error":"Error: select(Name Table) !!"})
 
+	def __getattr__(self,name):
+		if self._all.get("Error"):
+			return self._all.get("Error")
+
+		if name == "all":
+			return self._all
+		if self.index != "" and self.index:
+			return self._all.get(name)[self.index]
+		return self._all.get(name)
 		
 
 class Columns(Connect):
